@@ -15,27 +15,34 @@
 - 一個內建的小型 Vue 樣板
 - 命名空間支援
 
-## 結構
+## 主要結構
+
+下列結構中有*部分檔案被忽略*。
 
 ```js
 client
-├── assets                // 靜態檔案
+├── assets             // 靜態檔案
 │   ├── images
 │   ├── scripts
 │   └── styles
-├── apis                  // API 相關服務
-├── components            // 頁面元件
-│   └── shared            // 共享、通用元件
+├── apis               // API 相關服務
+│   ├── modules
+│   └── *index.js
+├── components         // 頁面元件
+│   └── shared         // 共享、通用元件
 ├── stores
-│   ├── modules           // 服務模塊的 Store
-│   ├── shared.js         // 共享的 Store
-│   └── index.js
-├── utils                 // 輔助工具
-├── validations           // 表單驗證規則
-├── views                 // 單一頁面
-├── App.vue
-├── routers.js            // 路由配置
-└── index.js
+│   ├── modules        // 服務模塊的 Store
+│   ├── *shared.js     // 共享的 Store
+│   └── *index.js
+├── utils              // 輔助工具
+│   └── *namespace.js
+├── validations        // 表單驗證規則
+│   ├── modules
+│   └── *shared.js
+├── views              // 單一頁面
+├── *App.vue
+├── *routers.js        // 路由配置
+└── *index.js
 ```
 
 ## 從這開始
