@@ -27,6 +27,21 @@ module.exports =
     },
     resolve:
     {
+        alias:
+        {
+            scripts    : path.resolve(__dirname, '../client/assets/scripts'),
+            styles     : path.resolve(__dirname, '../client/assets/styles'),
+            images     : path.resolve(__dirname, '../client/assets/images'),
+            components : path.resolve(__dirname, '../client/components'),
+            shared     : path.resolve(__dirname, '../client/components/shared'),
+            validations: path.resolve(__dirname, '../client/validations'),
+            apis       : path.resolve(__dirname, '../client/apis'),
+            stores     : path.resolve(__dirname, '../client/stores'),
+            modules    : path.resolve(__dirname, '../client/stores/modules'),
+            views      : path.resolve(__dirname, '../client/views'),
+            utils      : path.resolve(__dirname, '../client/utils'),
+            routers    : path.resolve(__dirname, '../client/routers.js'),
+        },
         extensions: ['.js', '.vue', '.css', '.json']
     },
     module:
