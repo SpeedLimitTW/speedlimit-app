@@ -28,9 +28,7 @@ client
 │   └── shared            // 共享、通用元件
 ├── stores
 │   ├── modules           // 服務模塊的 Store
-│   ├── actions.js        // 共享 Actions
-│   ├── getters.js        // 共享 Getters
-│   ├── mutations.js      // 共享 Mutations
+│   ├── shared.js         // 共享的 Store
 │   └── index.js
 ├── utils                 // 輔助工具
 ├── validations           // 表單驗證規則
