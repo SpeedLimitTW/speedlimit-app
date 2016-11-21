@@ -10,10 +10,10 @@
 - Webpack 2
 - Babel 6
 - 熱重啟工作區域（Hot Loader）
-- 可正常建置
 - 支援 Pug（Jade）、SASS、CSS、字體、圖片
-- 一個內建的小型 Vue 樣板
+- 內建範例
 - 命名空間支援
+- 支援 Mocking API（偽造 API 伺服器請求）、與模擬隨機錯誤
 
 ## 主要結構
 

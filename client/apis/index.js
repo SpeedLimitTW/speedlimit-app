@@ -1,5 +1,7 @@
 /** Mocking toggle */
-const isMocking = true
+const isMocking       = true
+/** Simulate random failure */
+const simulateFailure = false
 
 /**
  * API URLs
@@ -25,7 +27,7 @@ function mockingFn(data, callback, errCallback)
     }
 
     /** Simulate random failure */
-    if(Math.random() > 0.5 || navigator.userAgent.indexOf('PhantomJS') > -1)
+    if(Math.random() > 0.5 || navigator.userAgent.indexOf('PhantomJS') > -1 || !simulateFailure)
         callback(result)
     else
         errCallback(result)
