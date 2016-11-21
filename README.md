@@ -24,18 +24,21 @@ client
 │   ├── scripts
 │   └── styles
 ├── apis                  // API 相關服務
+│   ├── modules
+│   └── *index.js
 ├── components            // 頁面元件
 │   └── shared            // 共享、通用元件
 ├── stores
 │   ├── modules           // 服務模塊的 Store
-│   ├── shared.js         // 共享的 Store
-│   └── index.js
+│   ├── *shared.js         // 共享的 Store
+│   └── *index.js
 ├── utils                 // 輔助工具
+│   └── *namespace.js
 ├── validations           // 表單驗證規則
 ├── views                 // 單一頁面
-├── App.vue
-├── routers.js            // 路由配置
-└── index.js
+├── *App.vue
+├── *routers.js            // 路由配置
+└── *index.js
 ```
 
 ## 從這開始
