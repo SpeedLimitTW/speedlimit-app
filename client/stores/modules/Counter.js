@@ -41,8 +41,8 @@ const state =
 
 const mutations =
 {
-    [m.INCREMENT]       : state            => state.total++,
-    [m.SET_TO]          : (state, payload) => state.total = payload.count
+    [m.INCREMENT]: state            => state.total++,
+    [m.SET_TO]   : (state, payload) => state.total = payload.count
 }
 
 /**
