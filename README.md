@@ -44,7 +44,7 @@ client
 
 ```bash
 # clone（複製）或 fork（分歧）這個倉庫
-$ cd vuepack
+$ cd vuecargo
 $ npm install
 
 # 編輯檔案然後進行開發工作
