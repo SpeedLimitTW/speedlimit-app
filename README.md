@@ -35,7 +35,7 @@ client
 ├── utils                 // 輔助工具
 ├── validations           // 表單驗證規則
 ├── views                 // 單一頁面
-├── App.vue 
+├── App.vue
 ├── routers.js            // 路由配置
 └── index.js
 ```
