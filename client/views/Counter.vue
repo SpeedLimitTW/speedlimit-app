@@ -25,11 +25,11 @@ code
     .page
         main-counter
 
-    //- 註釋
-    p
-        | 欲要開始，請編輯
-        code ./client
-        | 內的檔案並儲存。
+        //- 註釋
+        p
+            | 欲要開始，請編輯
+            code ./client
+            | 內的檔案並儲存。
 </template>
 
 <script>

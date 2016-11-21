@@ -1,15 +1,15 @@
-import namespace from 'utils/namespace'
+import ns from 'utils/namespace'
 
 /**
  * Namespace
  */
 
-const ns = namespace('counter',
+const namespace = ns('counter',
 {
     mutations:
     [
         'INCREMENT',
-        'SET'
+        'SET_TO'
     ],
     actions:
     [
@@ -22,71 +22,67 @@ const ns = namespace('counter',
     ]
 })
 
-var {mutations, actions, getters} = ns
+var {mutations: m, actions: a, getters: g} = namespace
+
+/**
+ * State
+ */
+
+const state =
+{
+    total: 0
+}
+
+/**
+ * Mutations
+ */
+
+const mutations =
+{
+    [m.INCREMENT]: state            => state.total++,
+    [m.SET_TO]   : (state, payload) => state.total = payload.number,
+}
+
+/**
+ * Actions
+ */
+
+const actions =
+{
+    /**
+     * Set the total value directly.
+     *
+     * @param {integer} number - The new total value.
+     */
+
+    [a.set]({commit}, number)
+    {
+        commit(m.SET_TO, {number})
+    },
+
+    /**
+     * Increase the total value
+     *
+     * @param {string} direction - The direction to the next step (`next` | `previous`).
+     */
+
+    [a.increment]({commit})
+    {
+        commit(m.INCREMENT)
+    }
+}
+
+/**
+ * Getters
+ */
+
+const getters =
+{
+    [g.total]: state => state.total
+}
 
 /**
  * Export
  */
 
-export default
-{
-    /** Namespace */
-    ns,
-
-    /**
-     * State
-     */
-
-    state:
-    {
-        total: 0
-    },
-
-    /**
-     * Mutations
-     */
-
-    mutations:
-    {
-        [mutations.INCREMENT]: state            => state.total++,
-        [mutations.SET_TO]   : (state, payload) => state.total = payload.total,
-    },
-
-    /**
-     * Actions
-     */
-
-    actions:
-    {
-        /**
-         * Set the total value directly.
-         *
-         * @param {integer} number - The new total value.
-         */
-
-        [actions.set]({commit}, number)
-        {
-            commit(mutations.SET, {number})
-        },
-
-        /**
-         * Increase the total value
-         *
-         * @param {string} direction - The direction to the next step (`next` | `previous`).
-         */
-
-        [actions.increment]({commit})
-        {
-            commit(mutations.INCREMENT)
-        }
-    },
-
-    /**
-     * Getters
-     */
-
-    getters:
-    {
-        [getters.total]: state => state.total
-    }
-}
+module.exports = {namespace, state, mutations, actions, getters}

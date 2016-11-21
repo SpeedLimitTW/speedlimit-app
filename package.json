@@ -1,20 +1,18 @@
 {
-    "name"       : "vuecargo",
-    "version"    : "0.0.0",
-    "description": "A modern Vue.js starter which uses Vue 2, Vuex, Vue modules and Webpack 2.",
-    "main"       : "client/index.js",
-    "scripts":
-    {
-        "test" : "echo wow, such TeaMeow, very Spring!",
-        "build": "rm -rf dist && webpack --config build/webpack.prod.js",
-        "dev"  : "node build/server.js",
-        "gh"   : "npm run build && gh-pages -d dist"
-    },
-    "repository":
-    {
-        "type": "git",
-        "url" : "git+https://github.com/TeaMeow/vuecargo.git"
-    },
+  "name": "vuecargo",
+  "version": "0.0.0",
+  "description": "A modern Vue.js starter which uses Vue 2, Vuex, Vue modules and Webpack 2.",
+  "main": "client/index.js",
+  "scripts": {
+    "test": "echo wow, such TeaMeow, very Spring!",
+    "build": "rm -rf dist && webpack --config build/webpack.prod.js",
+    "dev": "node build/server.js",
+    "gh": "npm run build && gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TeaMeow/vuecargo.git"
+  },
   "keywords": [
     "vue",
     "vuex",
@@ -40,6 +38,8 @@
     "vuex-router-sync": "^3.0.0"
   },
   "devDependencies": {
+    "pug": "^2.0.0-beta6",
+    "pug-loader": "^2.3.0",
     "babel-core": "^6.17.0",
     "autoprefixer": "^6.4.0",
     "babel-loader": "^6.2.4",

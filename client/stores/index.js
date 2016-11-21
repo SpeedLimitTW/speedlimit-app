@@ -1,6 +1,11 @@
 import Vue                                  from 'vue'
+import Vuex                                 from 'vuex'
 import {state, mutations, actions, getters} from './shared'
-import counter                              from 'modules/Counter'
+
+/** Imported Modules */
+import counter from 'modules/Counter'
+
+Vue.use(Vuex)
 
 const store = new Vuex.Store
 ({

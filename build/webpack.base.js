@@ -100,7 +100,7 @@ module.exports =
                     postcss,
                     loaders:
                     {
-                        sass  : "vue-style-loader!css-loader!sass?indentedSyntax"
+                        sass: "vue-style-loader!css-loader!sass-loader?indentedSyntax"
                     }
                 },
                 sassLoader:
