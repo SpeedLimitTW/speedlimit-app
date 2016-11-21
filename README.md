@@ -6,12 +6,11 @@
 ## 特色
 
 - Vue 2
-- 最新的 Vuex/Router/Cookie/Resource
-- Webpack 2
-- Babel 6
+- 最新的 Vuex、Router、Cookie、Resource
+- Webpack 2、Babel 6
 - 熱重啟工作區域（Hot Loader）
-- 支援 Pug（Jade）、SASS、CSS、字體、圖片
-- 內建範例
+- 支援 Pug（Jade）、Sass、CSS、字體、圖片
+- 內建預設範例
 - 命名空間支援
 - 支援 Mocking API（偽造 API 伺服器請求）、與模擬隨機錯誤
 
@@ -63,7 +62,5 @@ $ npm run build
 安裝 `git with unix tools` 在你有所行動之前。
 
 ## License
-
-MIT &copy; [EGOIST](https://github.com/egoist)
 
 MIT &copy; [Yami Odymel](https://github.com/YamiOdymel)
