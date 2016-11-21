@@ -2,6 +2,7 @@
 //-------------------//
 //        計數器
 //-------------------//
+
 .counter
     margin: 50px auto 20px auto
     border-radius: 3px
@@ -17,6 +18,7 @@
 //-------------------//
 //        按鈕
 //-------------------//
+
 button
     margin-bottom: 50px
     font-size: 18px

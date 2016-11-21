@@ -54,6 +54,7 @@ module.exports = merge(config,
             {
                 loaders:
                 {
+                    sass: "vue-style-loader!css-loader!sass-loader?indentedSyntax",
                     css: ExtractTextPlugin.extract
                     ({
                         loader        : 'css-loader',
