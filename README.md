@@ -42,7 +42,7 @@ client
 ├── views              // 單一頁面
 ├── *App.vue
 ├── *routers.js        // 路由配置
-└── *index.js
+└── *index.js          // 主要進入點
 ```
 
 ## 從這開始
