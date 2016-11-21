@@ -43,8 +43,9 @@ export default
     {
         ...mapActions
         ({
-            increment: counter.actions.increment,
-            set      : counter.actions.set
+            increment : counter.actions.increment,
+            set       : counter.actions.set,
+            fetchCount: counter.actions.fetchCount
         })
     },
     computed:
@@ -53,6 +54,10 @@ export default
         ({
             total: counter.getters.total
         })
+    },
+    created()
+    {
+        this.fetchCount({$http: this.$http})
     }
 }
 </script>

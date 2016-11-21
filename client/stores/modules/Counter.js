@@ -1,4 +1,5 @@
-import ns from 'utils/namespace'
+import ns  from 'utils/namespace'
+import api from "apis/modules/Counter"
 
 /**
  * Namespace
@@ -15,6 +16,7 @@ const namespace = ns('counter',
     [
         'increment',
         'set',
+        'fetchCount'
     ],
     getters:
     [
@@ -39,8 +41,8 @@ const state =
 
 const mutations =
 {
-    [m.INCREMENT]: state            => state.total++,
-    [m.SET_TO]   : (state, payload) => state.total = payload.number,
+    [m.INCREMENT]       : state            => state.total++,
+    [m.SET_TO]          : (state, payload) => state.total = payload.count
 }
 
 /**
@@ -52,23 +54,33 @@ const actions =
     /**
      * Set the total value directly.
      *
-     * @param {integer} number - The new total value.
+     * @param {integer} count - The new total value.
      */
 
-    [a.set]({commit}, number)
+    [a.set]({commit}, count)
     {
-        commit(m.SET_TO, {number})
+        commit(m.SET_TO, {count})
     },
 
     /**
      * Increase the total value
-     *
-     * @param {string} direction - The direction to the next step (`next` | `previous`).
      */
 
     [a.increment]({commit})
     {
         commit(m.INCREMENT)
+    },
+
+    /**
+     * Fetch the count from the remote server
+     */
+
+    [a.fetchCount]({commit}, {$http})
+    {
+        api.getCount({$http}, (r) =>
+        {
+            commit(m.SET_TO, r.data)
+        })
     }
 }
 
