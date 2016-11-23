@@ -44,6 +44,25 @@ client
 └── *index.js          // 主要進入點
 ```
 
+## 已解決的路徑
+
+部分路徑已經配有自動解決（Resolve）。
+
+| 別名         | 映照路徑                   |
+|-------------|---------------------------|
+| scripts     | /client/assets/scripts    |
+| styles      | /client/assets/styles     |
+| images      | /client/assets/images     |
+| components  | /client/components        |
+| shared      | /client/components/shared |
+| validations | /client/validations       |
+| apis        | /client/apis              |
+| stores      | /client/stores            |
+| modules     | /client/stores/modules    |
+| views       | /client/views             |
+| utils       | /client/utils             |
+| routers     | /client/routers.js        |
+            
 ## 從這開始
 
 ```bash
