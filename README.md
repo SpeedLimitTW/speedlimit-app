@@ -11,7 +11,7 @@
 - 熱重啟工作區域（Hot Loader）
 - 支援 Pug（Jade）、Sass、CSS、字體、圖片
 - 內建預設範例
-- 命名空間支援
+- 支援 Vuex 2.1 命名空間
 - 支援 Mocking API（偽造 API 伺服器請求）、與模擬隨機錯誤
 
 ## 主要結構
@@ -34,7 +34,6 @@ client
 │   ├── *shared.js     // 共享的 Store
 │   └── *index.js
 ├── utils              // 輔助工具
-│   └── *namespace.js
 ├── validations        // 表單驗證規則
 │   ├── modules
 │   └── *shared.js
@@ -62,7 +61,7 @@ client
 | views       | /client/views             |
 | utils       | /client/utils             |
 | routers     | /client/routers.js        |
-            
+
 ## 從這開始
 
 ```bash

@@ -36,26 +36,17 @@ button
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import { namespace as counter }   from 'modules/Counter'
 
 export default
 {
     name: 'CounterBlock',
     methods:
     {
-        ...mapActions
-        ({
-            increment : counter.actions.increment,
-            set       : counter.actions.set,
-            fetchCount: counter.actions.fetchCount
-        })
+        ...mapActions('counter', ['increment', 'set', 'fetchCount'])
     },
     computed:
     {
-        ...mapGetters
-        ({
-            total: counter.getters.total
-        })
+        ...mapGetters('counter', ['total'])
     },
     created()
     {

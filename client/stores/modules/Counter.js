@@ -1,30 +1,4 @@
-import ns  from 'utils/namespace'
 import api from "apis/modules/Counter"
-
-/**
- * Namespace
- */
-
-const namespace = ns('counter',
-{
-    mutations:
-    [
-        'INCREMENT',
-        'SET_TO'
-    ],
-    actions:
-    [
-        'increment',
-        'set',
-        'fetchCount'
-    ],
-    getters:
-    [
-        'total'
-    ]
-})
-
-var {mutations: m, actions: a, getters: g} = namespace
 
 /**
  * State
@@ -41,8 +15,8 @@ const state =
 
 const mutations =
 {
-    [m.INCREMENT]: state            => state.total++,
-    [m.SET_TO]   : (state, payload) => state.total = payload.count
+    INCREMENT: state            => state.total++,
+    SET_TO   : (state, payload) => state.total = payload.count
 }
 
 /**
@@ -57,29 +31,29 @@ const actions =
      * @param {integer} count - The new total value.
      */
 
-    [a.set]({commit}, count)
+    set({commit}, count)
     {
-        commit(m.SET_TO, {count})
+        commit('SET_TO', {count})
     },
 
     /**
      * Increase the total value
      */
 
-    [a.increment]({commit})
+    increment({commit})
     {
-        commit(m.INCREMENT)
+        commit('INCREMENT')
     },
 
     /**
      * Fetch the count from the remote server
      */
 
-    [a.fetchCount]({commit}, {$http})
+    fetchCount({commit}, {$http})
     {
         api.getCount({$http}, (r) =>
         {
-            commit(m.SET_TO, r.data)
+            commit('SET_TO', r.data)
         })
     }
 }
@@ -90,11 +64,11 @@ const actions =
 
 const getters =
 {
-    [g.total]: state => state.total
+    total: state => state.total
 }
 
 /**
  * Export
  */
 
-module.exports = {namespace, state, mutations, actions, getters}
+module.exports = {namespaced: true, state, mutations, actions, getters}
