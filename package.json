@@ -30,12 +30,12 @@
   },
   "homepage": "https://github.com/TeaMeow/vuecargo#readme",
   "dependencies": {
-    "vue": "^2.1.3",
+    "vue": "^2.1.7",
     "vue-cookie": "^1.1.3",
     "vue-resource": "^1.0.3",
-    "vue-router": "^2.1.0",
-    "vuex": "^2.0.0",
-    "vuex-router-sync": "^3.0.0"
+    "vue-router": "^2.1.1",
+    "vuex": "^2.1.1",
+    "vuex-router-sync": "^4.0.1"
   },
   "devDependencies": {
     "pug": "^2.0.0-beta6",
