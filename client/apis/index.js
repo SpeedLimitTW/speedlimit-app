@@ -18,19 +18,25 @@ const apis =
 
 function mockingFn(data, callback, errCallback)
 {
-    result =
-    {
-        success : true,
-        code    : "0000",
-        message : "請求成功",
-        data
-    }
-
     /** Simulate random failure */
     if(Math.random() > 0.5 || navigator.userAgent.indexOf('PhantomJS') > -1 || !simulateFailure)
-        callback(result)
+        callback({
+            //url       :
+            body      : data,
+            //headers   :
+            ok        : true,
+            status    : 200,
+            statusText: "Success"
+        })
     else
-        errCallback(result)
+        errCallback({
+            //url       :
+            body      : data,
+            //headers   :
+            ok        : false,
+            status    : 400,
+            statusText: "Bad Request"
+        })
 }
 
 /**
