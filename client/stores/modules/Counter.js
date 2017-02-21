@@ -15,8 +15,15 @@ const state =
 
 const mutations =
 {
-    INCREMENT: state            => state.total++,
-    SET_TO   : (state, payload) => state.total = payload.count
+    // INCREMENT returns the increased counter number.
+    INCREMENT(state) {
+        state.total++
+    },
+    // SET_TO sets the total count as the specified number.
+    SET_TO(state, payload) {
+        if(payload !== undefined)
+            state.total = payload.count
+    }
 }
 
 /**
@@ -71,4 +78,4 @@ const getters =
  * Export
  */
 
-module.exports = {namespaced: true, state, mutations, actions, getters}
+export default {namespaced: true, state, mutations, actions, getters}

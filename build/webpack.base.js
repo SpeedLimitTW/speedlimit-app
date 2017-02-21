@@ -41,6 +41,7 @@ module.exports =
             views      : path.resolve(__dirname, '../client/views'),
             utils      : path.resolve(__dirname, '../client/utils'),
             routers    : path.resolve(__dirname, '../client/routers.js'),
+            'vue$'     : 'vue/dist/vue.common.js'
         },
         extensions: ['.js', '.vue', '.css', '.json']
     },
@@ -50,11 +51,11 @@ module.exports =
         [
             {
                 test: /\.vue$/,
-                loaders: 'vue-loader'
+                use: 'vue-loader'
             },
             {
                 test: /\.js$/,
-                loaders: 'babel-loader',
+                use: 'babel-loader',
                 exclude: [/node_modules/]
             },
             {
@@ -68,15 +69,15 @@ module.exports =
             },
             {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-                loader: 'url-loader'
+                use: 'url-loader'
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader' })
+                use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })
             },
             {
                 test: /\.sass$/,
-                loader: 'sass-loader'
+                use: 'sass-loader'
             }
         ]
     },
