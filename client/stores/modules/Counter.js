@@ -1,4 +1,4 @@
-import api from "apis/modules/Counter"
+import api from "apis/impl"
 
 /**
  * State
@@ -58,9 +58,8 @@ const actions =
 
     fetchCount({commit}, {$http})
     {
-        api.getCount({$http}, (r) =>
-        {
-            commit('SET_TO', r.data)
+        api.getCount((resp) => {
+            commit('SET_TO', resp.body)
         })
     }
 }
