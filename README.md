@@ -6,13 +6,13 @@
 ## 特色
 
 - Vue 2
-- 最新的 Vuex、Router、Cookie、Resource
+- 最新的 Vuex、Router、Cookie、SuperAgent
 - Webpack 2、Babel 6
 - 熱重啟工作區域（Hot Loader）
 - 支援 Pug（Jade）、Sass、CSS、字體、圖片
 - 內建預設範例
 - 支援 Vuex 2.1 命名空間
-- 支援 Mocking API（偽造 API 伺服器請求）、與模擬隨機錯誤
+- 支援 Mocking API（偽造 API 伺服器請求）
 
 ## 主要結構
 
@@ -25,8 +25,10 @@ client
 │   ├── scripts
 │   └── styles
 ├── apis               // API 相關服務
-│   ├── modules
-│   └── *index.js
+│   ├── mocks
+│   └── *impl.js       // API 功能實作
+│   └── *mock.js       // API 模擬資料
+│   └── *path.js       // API 請求路徑
 ├── components         // 頁面元件
 │   └── shared         // 共享、通用元件
 ├── stores
