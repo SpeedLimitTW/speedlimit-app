@@ -1,46 +1,18 @@
-/** Mocking toggle */
-const isMocking       = true
-/** Simulate random failure */
-const simulateFailure = false
+import request from 'superagent'
+var mock    = require('superagent-mocker')(request)
+var sprintf = require('sprintf-js').sprintf
 
-/**
- * API URLs
- */
+// Base path.
+var base = 'http://localhost:8080'
 
-const apis =
-{
-    getCount: 'https://api.example.com/1.0/count'
+// Simulate the network latency randomly.
+mock.timeout = () => {
+    return Math.floor(1000 + (Math.random() * (2000 - 1000 + 1)))
 }
 
-/**
- * Mocking Function
- */
-
-function mockingFn(data, callback, errCallback)
-{
-    /** Simulate random failure */
-    if(Math.random() > 0.5 || navigator.userAgent.indexOf('PhantomJS') > -1 || !simulateFailure)
-        callback({
-            //url       :
-            body      : data,
-            //headers   :
-            ok        : true,
-            status    : 200,
-            statusText: "Success"
-        })
-    else
-        errCallback({
-            //url       :
-            body      : data,
-            //headers   :
-            ok        : false,
-            status    : 400,
-            statusText: "Bad Request"
-        })
+// uri is the alias to the `sprintf`.
+var uri = (path, ...args) => {
+    return sprintf(path, ...args)
 }
 
-/**
- * Export
- */
-
-module.exports = {isMocking, apis, mockingFn}
+export { request, uri, sprintf, mock, base }
