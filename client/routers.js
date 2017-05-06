@@ -6,7 +6,6 @@ import Registration   from 'views/Registration'
 import MemberList     from 'views/MemberList'
 import MemberEdit     from 'views/MemberEdit'
 import PasswordChange from 'views/PasswordChange'
-import Preference     from 'views/Preference'
 import Traces         from 'views/Traces'
 import Timeline       from 'views/Timeline'
 import Looking        from 'views/Looking'
@@ -48,10 +47,6 @@ export default new Router
         {
             path     : '/timeline',
             component: Timeline
-        },
-        {
-            path     : '/preference',
-            component: Preference
         },
         {
             path     : '/traces',

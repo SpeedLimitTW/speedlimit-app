@@ -159,8 +159,8 @@ table
                     連結裝置
                 </div>
                 <div class="image content">
-                    <div class="ts medium image">
-                        <video autoplay style="width: 300px; height: auto; font-size: 1rem;"></video>
+                    <div class="ts large image">
+                        <video autoplay style="width: 450px; height: auto; font-size: 1rem;"></video>
                     </div>
                     <div class="description">
                         <div class="ts header">請將攝影機對準裝置上的 QR Code。</div>
