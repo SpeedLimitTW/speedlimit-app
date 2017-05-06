@@ -178,28 +178,30 @@ table
 </template>
 
 <script>
-import MainSidebar from 'components/Sidebar'
+import MainSidebar  from 'components/Sidebar'
 import { generate } from 'scripts/january'
-//import 'scripts/tocas.dev.js'
 
 export default {
     components: {
         MainSidebar
     },
     methods:{
-        addDevice(){
+        addDevice() {
             this.devices.push({name: '', id: ''})
         },
-        closeScanner(){
+        closeScanner() {
             this.scanner = false
             this.qr.stream.getTracks()[0].stop()
         },
-        scan(i){
-            this.scanner = true
+        scan(i) {
             var that = this
-            this.qr = new QCodeDecoder()
+
+            this.scanner = true
+            this.qr      = new QCodeDecoder()
+
             setTimeout(() => {
                 var video = document.querySelector('video')
+
                 function resultHandler (err, result) {
                     if (err)
                         return console.log(err.message)
@@ -208,22 +210,18 @@ export default {
                     that.closeScanner()
                     that.qr.stream.getTracks()[0].stop()
                 }
+
                 that.qr.decodeFromCamera(video, resultHandler)
             }, 100)
         }
     },
-    data(){
+    data() {
         return {
             devices: [],
             scanner: false,
-            qr: new QCodeDecoder(),
-            date: generate()
+            qr     : new QCodeDecoder(),
+            date   : generate()
         }
-    },
-    mounted(){
-
-
-
     }
 }
 </script>

@@ -1,4 +1,8 @@
 const _main = {
+    postUser: {
+        success: true
+    },
+
     getMembers: [
         {
             realname: '吳駿維',

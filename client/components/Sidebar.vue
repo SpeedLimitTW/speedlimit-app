@@ -20,8 +20,8 @@
             <i class="users icon"></i>
             家人管理
             <div class="menu">
-                <router-link to="/members" class="item">成員清單</router-link>
-                <router-link to="/member/edit" class="item">建立家人</router-link>
+                <router-link to="/members"     class="item" :class="{active: $route.fullPath === '/members'}">成員清單</router-link>
+                <router-link to="/member/edit" class="item" :class="{active: $route.fullPath === '/member/edit'}">建立家人</router-link>
             </div>
         </div>
         <!-- / 家人管理 -->
@@ -31,7 +31,7 @@
             <i class="setting icon"></i>
             帳號設定
             <div class="menu">
-                <router-link to="/password" class="item">密碼變更</router-link>
+                <router-link to="/password" class="item" :class="{active: $route.fullPath === '/password'}">密碼變更</router-link>
             </div>
         </div>
         <!-- / 帳號設定 -->
@@ -41,9 +41,9 @@
             <i class="talk icon"></i>
             群眾互助
             <div class="menu">
-                <router-link to="/request" class="item">請求協助</router-link>
-                <router-link to="/looking" class="item">幫助他人</router-link>
-                <router-link to="/timeline" class="item">我的愛心</router-link>
+                <router-link to="/request"  class="item" :class="{active: $route.fullPath === '/request'}">請求協助</router-link>
+                <router-link to="/looking"  class="item" :class="{active: $route.fullPath === '/looking'}">幫助他人</router-link>
+                <router-link to="/timeline" class="item" :class="{active: $route.fullPath === '/timeline'}">我的愛心</router-link>
             </div>
         </div>
         <!-- / 群眾互助 -->
