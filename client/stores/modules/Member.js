@@ -6,7 +6,7 @@ import api from "apis/impl"
 
 const state =
 {
-    total: 0
+    members: null
 }
 
 /**
@@ -22,7 +22,7 @@ const mutations =
     // SET_TO sets the total count as the specified number.
     SET_TO(state, payload) {
         if(payload !== undefined)
-            state.total = payload.count
+            state.members = payload
     }
 }
 
@@ -32,20 +32,13 @@ const mutations =
 
 const actions =
 {
-    /**
-     * Set the total value directly.
-     *
-     * @param {integer} count - The new total value.
-     */
 
-    set({commit}, count)
+    set({commit}, body)
     {
-        commit('SET_TO', {count})
+        commit('SET_TO', {body})
     },
 
-    /**
-     * Increase the total value
-     */
+
 
     increment({commit})
     {
@@ -56,9 +49,9 @@ const actions =
      * Fetch the count from the remote server
      */
 
-    fetchCount({commit}, {$http})
+    fetchMembers({commit}, {$http})
     {
-        api.getCount((resp) => {
+        api.getMembers((resp) => {
             commit('SET_TO', resp.body)
         })
     }
@@ -70,7 +63,7 @@ const actions =
 
 const getters =
 {
-    total: state => state.total
+    members: state => state.members
 }
 
 /**

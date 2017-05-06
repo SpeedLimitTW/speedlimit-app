@@ -3,7 +3,7 @@ import Vuex                                 from 'vuex'
 import {state, mutations, actions, getters} from './shared'
 
 /** Imported Modules */
-import counter from 'modules/Counter'
+import member from 'modules/Member'
 
 Vue.use(Vuex)
 
@@ -12,7 +12,7 @@ const store = new Vuex.Store
     /** Modules */
     modules:
     {
-        counter
+        member
     },
 
     /** Shared Store */
