@@ -1,8 +1,5 @@
 <style lang="sass">
-body, html
-    height: 100%
-    width : 100%
-    overflow: hidden
+@import "~styles/tocas.css"
 </style>
 
 <template lang="pug">
@@ -10,4 +7,5 @@ body, html
 </template>
 
 <script>
+
 </script>
