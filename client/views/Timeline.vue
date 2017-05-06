@@ -34,119 +34,22 @@ table
                 <div class="ts relaxed grid">
                     <!-- 標題欄位 -->
                     <div class="nine wide column">
-                        <div class="ts feed">
-                            <div class="event">
+                        <div class="ts active centered inline loader" v-if="loading"></div>
+                        <div class="ts feed" v-if="!loading">
+                            <div class="event" v-for="request in requests" v-if="request.done">
                                 <div class="label">
-                                    <i class="inverted negative circular heart icon"></i>
+                                    <i class="circular heart icon"></i>
                                 </div>
                                 <div class="content">
                                     <div class="date">
-                                        3 小時前
+                                        剛才
                                     </div>
                                     <div class="summary">
-                                        你幫助了 Yami Odymel 抵達 30 公里以外的地方。
-                                    </div>
-                                    <div class="meta">
-                                        <a href="#">清除</a>
+                                        你幫助了 {{ request.realname}} 抵達了他自己的住所。
                                     </div>
                                 </div>
                             </div>
-                            <div class="event">
-                                <div class="label">
-                                    <i class="inverted negative circular heart icon"></i>
-                                </div>
-                                <div class="content">
-                                    <div class="date">
-                                        3 小時前
-                                    </div>
-                                    <div class="summary">
-                                        你幫助了 Yami Odymel 抵達 30 公里以外的地方。
-                                    </div>
-                                    <div class="meta">
-                                        <a href="#">清除</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="event">
-                                <div class="label">
-                                    <i class="inverted negative circular heart icon"></i>
-                                </div>
-                                <div class="content">
-                                    <div class="date">
-                                        3 小時前
-                                    </div>
-                                    <div class="summary">
-                                        你幫助了 Yami Odymel 抵達 30 公里以外的地方。
-                                    </div>
-                                    <div class="meta">
-                                        <a href="#">清除</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="event">
-                                <div class="label">
-                                    <i class="inverted negative circular heart icon"></i>
-                                </div>
-                                <div class="content">
-                                    <div class="date">
-                                        3 小時前
-                                    </div>
-                                    <div class="summary">
-                                        你幫助了 Yami Odymel 抵達 30 公里以外的地方。
-                                    </div>
-                                    <div class="meta">
-                                        <a href="#">清除</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="event">
-                                <div class="label">
-                                    <i class="inverted negative circular heart icon"></i>
-                                </div>
-                                <div class="content">
-                                    <div class="date">
-                                        3 小時前
-                                    </div>
-                                    <div class="summary">
-                                        你幫助了 Yami Odymel 抵達 30 公里以外的地方。
-                                    </div>
-                                    <div class="meta">
-                                        <a href="#">清除</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="event">
-                                <div class="label">
-                                    <i class="inverted negative circular heart icon"></i>
-                                </div>
-                                <div class="content">
-                                    <div class="date">
-                                        3 小時前
-                                    </div>
-                                    <div class="summary">
-                                        你幫助了 Yami Odymel 抵達 30 公里以外的地方。
-                                    </div>
-                                    <div class="meta">
-                                        <a href="#">清除</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="event">
-                                <div class="label">
-                                    <i class="inverted negative circular heart icon"></i>
-                                </div>
-                                <div class="content">
-                                    <div class="date">
-                                        3 小時前
-                                    </div>
-                                    <div class="summary">
-                                        你幫助了 Yami Odymel 抵達 30 公里以外的地方。
-                                    </div>
-                                    <div class="meta">
-                                        <a href="#">清除</a>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <div class="seven wide column">
@@ -171,19 +74,36 @@ export default {
     components: {
         MainSidebar
     },
+    data() {
+        return {
+            loading : true,
+            requests: null
+        }
+    },
     mounted() {
-        var pos = {lat: 22.7478292, lng: 120.3436056}
-        var mapOptions = {
+        var that = this
+
+        setTimeout(() => {
+            var requests = JSON.parse(localStorage.getItem('requests'))
+
+            if (requests === null)
+                requests = []
+
+            that.requests = requests
+            that.loading = false
+        }, Math.floor(Math.random() * 1200) + 500)
+
+        var pos        = {lat: 22.7478292, lng: 120.3436056},
+            mapOptions = {
             center: pos,
             zoom: 16
         }
 
-        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-        var marker = new google.maps.Marker({
+        var map    = new google.maps.Map(document.getElementById("map-canvas"), mapOptions),
+            marker = new google.maps.Marker({
           position: pos,
-          map: map,
-          title: 'Hello World!'
-        });
+          map     : map
+        })
 
     }
 }

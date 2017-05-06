@@ -177,6 +177,7 @@ export default {
                 localStorage.setItem('users', JSON.stringify(users))
 
                 that.loading = false
+                this.$router.push({path: '/login'})
             }, Math.floor(Math.random() * 1200) + 500)
         }
     }

@@ -21,9 +21,9 @@ table
                 <div class="ts narrow container">
                     <!-- 標題 -->
                     <div class="header">
-                        編輯成員
+                        建立家人
                     </div>
-                    <div class="description">這裡會列出你所新增的家人資料。</div>
+                    <div class="description">新增一個用以追蹤的家庭成員以保護他們的安全。</div>
                     <!-- / 標題 -->
                 </div>
             </div>
@@ -41,18 +41,18 @@ table
                                 <!-- 單個欄位 -->
                                 <div class="basic field">
                                     <label>家人姓名</label>
-                                    <input type="text">
+                                    <input type="text" v-model="realname">
                                 </div>
                                 <!-- / 單個欄位 -->
 
                                 <!-- 單個欄位 -->
                                 <div class="basic field">
-                                    <label>稱位</label>
-                                    <select class="ts basic dropdown">
-                                        <option>爺爺</option>
-                                        <option>奶奶</option>
-                                        <option>舅舅</option>
-                                        <option>叔公</option>
+                                    <label>稱謂</label>
+                                    <select class="ts basic dropdown" v-model="relative">
+                                        <option value="爺爺">爺爺</option>
+                                        <option value="奶奶">奶奶</option>
+                                        <option value="舅舅">舅舅</option>
+                                        <option value="叔公">叔公</option>
                                     </select>
                                 </div>
                                 <!-- / 單個欄位 -->
@@ -62,7 +62,7 @@ table
                             <!-- 單個欄位 -->
                             <div class="field">
                                 <label>住址</label>
-                                <input type="text">
+                                <input type="text" v-model="address">
                                 <small>請輸入這位家人的住址，我們會以此作為安全區域。</small>
                             </div>
                             <!-- /單個欄位 -->
@@ -74,13 +74,13 @@ table
                                     <label>生日</label>
                                     <!-- 下拉式選單群組 -->
                                     <div class="ts relaxed fluid separated dropdowns">
-                                        <select>
+                                        <select v-model="birthYear">
                                             <option v-for="year in date.years">{{ year }}</option>
                                         </select>
-                                        <select>
+                                        <select v-model="birthMonth">
                                             <option v-for="month in date.months">{{ month }}</option>
                                         </select>
-                                        <select>
+                                        <select v-model="birthDay">
                                             <option v-for="day in date.days">{{ day }}</option>
                                         </select>
                                     </div>
@@ -95,11 +95,11 @@ table
                                     <!-- 單選方塊群組 -->
                                     <div class="ts center aligned compact horizontal checkboxes">
                                         <div class="ts radio checkbox">
-                                            <input type="radio" name="gender" id="genderMale" checked="checked">
+                                            <input type="radio" name="gender" id="genderMale" value="male" v-model="gender">
                                             <label for="genderMale">男性</label>
                                         </div>
                                         <div class="ts radio checkbox">
-                                            <input type="radio" name="gender" id="genderFemale">
+                                            <input type="radio" name="gender" id="genderFemale" value="female" v-model="gender">
                                             <label for="genderFemale">女性</label>
                                         </div>
                                     </div>
@@ -140,8 +140,8 @@ table
 
                             <!-- 按鈕 -->
                             <div class="ts fluid separated buttons">
-                                <button class="ts fluid button" type="button">取消</button>
-                                <button class="ts fluid inverted button" type="button">儲存變更</button>
+                                <button class="ts fluid button" type="button" @click="cancel()">取消</button>
+                                <button class="ts fluid inverted button" type="button" @click="submit()" :class="{'loading': loading}">建立成員</button>
                             </div>
                             <!-- / 按鈕 -->
                         </form>
@@ -202,7 +202,7 @@ export default {
             setTimeout(() => {
                 var video = document.querySelector('video')
 
-                function resultHandler (err, result) {
+                function resultHandler(err, result) {
                     if (err)
                         return console.log(err.message)
 
@@ -213,14 +213,50 @@ export default {
 
                 that.qr.decodeFromCamera(video, resultHandler)
             }, 100)
+        },
+        cancel() {
+            this.$router.push({path: '/members'})
+        },
+        submit() {
+            var that = this
+            this.loading = true
+
+            setTimeout(() => {
+                var members = JSON.parse(localStorage.getItem('members'))
+
+                if (members === null)
+                    members = []
+
+                members.push({
+                    realname: this.realname,
+                    relative: this.relative,
+                    address : this.email,
+                    birthday: this.birthYear + '-' + this.birthMonth + '-' + this.birthDay,
+                    devices : this.devices,
+                    gender  : this.gender
+                })
+
+                localStorage.setItem('members', JSON.stringify(members))
+
+                that.loading = false
+                this.$router.push({path: '/members'})
+            }, Math.floor(Math.random() * 1200) + 500)
         }
     },
     data() {
         return {
-            devices: [],
-            scanner: false,
-            qr     : new QCodeDecoder(),
-            date   : generate()
+            devices   : [],
+            scanner   : false,
+            qr        : new QCodeDecoder(),
+            date      : generate(false, false, {leadingZero: true}),
+            realname  : '',
+            relative  : '爺爺',
+            address   : '',
+            birthYear : '2017',
+            birthMonth: '05',
+            birthDay  : '07',
+            gender    : 'male',
+            loading   : false
         }
     }
 }

@@ -30,7 +30,7 @@ strong
                 <div class="ts narrow container">
                     <!-- 標題 -->
                     <div class="header">
-                        前往協助 吳駿維
+                        前往協助 {{ $route.params.name }}
                     </div>
                     <div class="description">你已經決定前往協助此人回家，這裡是相關資訊。</div>
                     <!-- / 標題 -->
@@ -127,8 +127,8 @@ strong
                             </table>
 
                             <div class="ts separated fluid buttons">
-                                <button class="ts button">取消協助</button>
-                                <button class="ts positive button">我已協助完成</button>
+                                <button class="ts button" @click="cancel()">取消協助</button>
+                                <button class="ts positive button" @click="done($route.params.name)">我已協助完成</button>
                             </div>
                         </div>
                     </div>
@@ -159,35 +159,65 @@ export default {
             loading : true
         }
     },
-    mounted() {
-        var pos        = { lat: 22.8033658, lng: 120.2215212 },
-            mapOptions = {
-            center: pos,
-            zoom: 20
+    methods: {
+        cancel() {
+            this.$router.push({path: '/looking'})
         },
-            that              = this,
-            directionsService = new google.maps.DirectionsService,
-            directionsDisplay = new google.maps.DirectionsRenderer,
-            map               = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+        done(name) {
+            var requests = JSON.parse(localStorage.getItem('requests'))
 
-        directionsDisplay.setMap(map)
-        directionsService.route({
-            origin     : { lat: 22.7478292, lng: 120.3436056 },
-            destination: { lat: 22.8033658, lng: 120.2215212 },
-            travelMode : 'DRIVING'
-        }, function(response, status) {
-            if (status !== 'OK')
-                return
+            if (requests === null)
+                requests = []
 
-            that.end      = response.routes[0].legs[0].end_address
-            that.start    = response.routes[0].legs[0].start_address
-            that.waste    = response.routes[0].legs[0].duration.value
-            that.distance = response.routes[0].legs[0].distance.value
-            that.steps    = response.routes[0].legs[0].steps
+            requests.map((obj) => {
+                if(obj.realname === name) {
+                    obj.done = true
+                    return obj
+                }
+                return obj
+            })
 
-            directionsDisplay.setDirections(response)
+            localStorage.setItem('requests', JSON.stringify(requests))
+            alert("成功！")
+            this.$router.push({path: '/looking'})
+        }
+    },
+    mounted() {
+        var that = this
+
+        setTimeout(() => {
             that.loading = false
-        })
+
+            setTimeout(() => {
+                var pos        = { lat: 22.8033658, lng: 120.2215212 },
+                    mapOptions = {
+                    center: pos,
+                    zoom: 20
+                },
+
+                    directionsService = new google.maps.DirectionsService,
+                    directionsDisplay = new google.maps.DirectionsRenderer,
+                    map               = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+                directionsDisplay.setMap(map)
+                directionsService.route({
+                    origin     : { lat: 22.7478292, lng: 120.3436056 },
+                    destination: { lat: 22.8033658, lng: 120.2215212 },
+                    travelMode : 'DRIVING'
+                }, function(response, status) {
+                    if (status !== 'OK')
+                        return
+
+                    that.end      = response.routes[0].legs[0].end_address
+                    that.start    = response.routes[0].legs[0].start_address
+                    that.waste    = response.routes[0].legs[0].duration.value
+                    that.distance = response.routes[0].legs[0].distance.value
+                    that.steps    = response.routes[0].legs[0].steps
+
+                    directionsDisplay.setDirections(response)
+                })
+            }, 100)
+        }, 400)
     }
 }
 </script>

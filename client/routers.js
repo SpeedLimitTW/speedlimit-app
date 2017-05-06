@@ -6,7 +6,7 @@ import Registration   from 'views/Registration'
 import MemberList     from 'views/MemberList'
 import MemberEdit     from 'views/MemberEdit'
 import PasswordChange from 'views/PasswordChange'
-import Traces         from 'views/Traces'
+import Trace          from 'views/Trace'
 import Timeline       from 'views/Timeline'
 import Looking        from 'views/Looking'
 import Request        from 'views/Request'
@@ -17,7 +17,7 @@ export default new Router
     routes:
     [
         {
-            path     : '/dashboard',
+            path     : '/dashboard/:name',
             component: Dashboard
         },
         {
@@ -49,8 +49,8 @@ export default new Router
             component: Timeline
         },
         {
-            path     : '/traces',
-            component: Traces
+            path     : '/trace/:name',
+            component: Trace
         },
         {
             path     : '/looking',

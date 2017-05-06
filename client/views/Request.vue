@@ -35,11 +35,10 @@ table
                         <form class="ts relaxed form">
                             <!-- 單個欄位 -->
                             <div class="field">
-                                <label>誰需要幫助？</label>
+                                <label>需協助者</label>
                                 <div class="ts fluid dropdown">
-                                    <select>
-                                        <option>游崇祐</option>
-                                        <option>吳俊維</option>
+                                    <select v-for="member in members" v-model="realname">
+                                        <option :value="member.realname">{{ member.realname }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -47,22 +46,34 @@ table
 
                             <!-- 單個欄位 -->
                             <div class="field">
-                                <label>什麼時候結束，或是就不需要了？</label>
+                                <label>截止時間</label>
                                 <div class="ts fluid dropdown">
-                                    <select>
-                                        <option>3 分鐘後</option>
-                                        <option>5 分鐘後</option>
-                                        <option>8 分鐘後</option>
-                                        <option>10 分鐘後</option>
-                                        <option>15 分鐘後</option>
-                                        <option>20 分鐘後</option>
-                                        <option>30 分鐘後</option>
-                                        <option>40 分鐘後</option>
-                                        <option>50 分鐘後</option>
-                                        <option>一小時後</option>
-                                        <option>永遠</option>
+                                    <select v-model="timeout">
+                                        <option value="3">3 分鐘後</option>
+                                        <option value="5">5 分鐘後</option>
+                                        <option value="8">8 分鐘後</option>
+                                        <option value="10">10 分鐘後</option>
+                                        <option value="15">15 分鐘後</option>
+                                        <option value="20">20 分鐘後</option>
+                                        <option value="30">30 分鐘後</option>
+                                        <option value="40">40 分鐘後</option>
+                                        <option value="50">50 分鐘後</option>
                                     </select>
                                 </div>
+                            </div>
+                            <!-- / 單個欄位 -->
+
+                            <!-- 單個欄位 -->
+                            <div class="field">
+                                <label>事件說明</label>
+                                <textarea rows="4" placeholder="用簡短的說明敘述發生了什麼，以便善心人士能夠更方便地應對問題。" v-model="description"></textarea>
+                            </div>
+                            <!-- / 單個欄位 -->
+
+                            <!-- 單個欄位 -->
+                            <div class="field">
+                                <label>相關回饋</label>
+                                <textarea rows="4" placeholder="（如：免費五十元折價餐卷、一起自拍）" v-model="reward"></textarea>
                             </div>
                             <!-- / 單個欄位 -->
 
@@ -73,11 +84,10 @@ table
                             </div>
                             <!-- / 單個欄位 -->
 
-
                             <!-- 按鈕 -->
                             <div class="ts fluid separated buttons">
-                                <button class="ts fluid button" type="button">取消</button>
-                                <button class="ts fluid inverted button" type="button">送出幫助請求</button>
+                                <button class="ts fluid button" type="button" @click="cancel()">取消</button>
+                                <button class="ts fluid inverted button" type="button" :class="{'loading': loading}" @click="submit()">送出幫助請求</button>
                             </div>
                             <!-- / 按鈕 -->
                         </form>
@@ -99,19 +109,62 @@ export default {
     components: {
         MainSidebar
     },
-    mounted() {
-        var pos = {lat: 22.7478292, lng: 120.3436056}
-        var mapOptions = {
-            center: pos,
-            zoom: 16
+    data() {
+        return {
+            members    : null,
+            realname   : '',
+            timeout    : 3,
+            loading    : false,
+            description: '',
+            reward     : '',
         }
+    },
+    methods: {
+        cancel() {
+            this.$router.push({path: '/members'})
+        },
+        submit() {
+            var that = this
+            this.loading = true
 
-        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-        var marker = new google.maps.Marker({
-          position: pos,
-          map: map,
-          title: 'Hello World!'
-        });
+            setTimeout(() => {
+                var requests = JSON.parse(localStorage.getItem('requests'))
+
+                if (requests === null)
+                    requests = []
+
+                requests.push({
+                    realname   : this.realname,
+                    reward     : this.reward,
+                    description: this.description,
+                    devices    : this.devices,
+                    done       : false
+                })
+
+                localStorage.setItem('requests', JSON.stringify(requests))
+
+                that.loading = false
+                this.$router.push({path: '/looking'})
+            }, Math.floor(Math.random() * 1200) + 500)
+        }
+    },
+    mounted() {
+        this.members = JSON.parse(localStorage.getItem('members'))
+
+        if(this.members === null)
+            this.members = []
+
+        var pos        = {lat: 22.7478292, lng: 120.3436056},
+            mapOptions = {
+            center: pos,
+            zoom  : 16
+        }
+        var map    = new google.maps.Map(document.getElementById("map-canvas"), mapOptions),
+            marker = new google.maps.Marker({
+            position: pos,
+            map     : map,
+            title   : 'Hello World!'
+        })
     }
 }
 </script>

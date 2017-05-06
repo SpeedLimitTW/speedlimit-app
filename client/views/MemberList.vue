@@ -49,7 +49,19 @@ table
                             </div>
                             <!-- / 讀取指示器 -->
                         </div>
-                        <table class="ts padded stripped table" v-if="members">
+                        <div class="ts padded slate" v-if="typeof members !== 'undefined' && members !== null && members.length === 0">
+                            <span class="header">尚無家庭成員</span>
+                            <span class="description">欲管理家庭成員的蹤跡，安全和健康，請建立一個新的成員。</span>
+                            <div class="action">
+                                <router-link to="/member/edit">
+                                    <button class="ts right labeled icon positive button">
+                                        現在開始
+                                        <i class="right arrow icon"></i>
+                                    </button>
+                                </router-link>
+                            </div>
+                        </div>
+                        <table class="ts padded stripped table" v-if="members && members.length !== 0">
                             <thead>
                                 <tr>
                                     <th>姓名</th>
@@ -59,19 +71,23 @@ table
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="member in members" :key="member.realname">
-                                    <td><router-link to="/dashboard">{{ member.realname }}</router-link></td>
+                                <tr v-for="member in members">
+                                    <td><router-link :to="'/dashboard/'+member.realname">{{ member.realname }}</router-link></td>
                                     <td>{{ member.birthday }}</td>
                                     <td>
-                                        <div class="ts list" v-if="member.devices">
-                                            <div class="item" v-for="device in member.devices" :key="device">{{ device }}</div>
+                                        <div class="ts bulleted list" v-if="member.devices.length > 0">
+                                            <div class="item" v-for="device in member.devices" v-if="device.name !== ''">
+                                                {{ device.name }}
+                                            </div>
                                         </div>
-                                        <span v-if="!member.devices">（無）</span>
                                     </td>
                                     <td class="right aligned collapsing">
-                                        <button @click="edit(member.realname)" class="ts small icon labeled button">
+                                        <!--<button @click="edit(member.realname)" class="ts small icon labeled button">
                                             <i class="edit icon"></i>
                                             編輯
+                                        </button>-->
+                                        <button @click="remove(member.realname)" class="ts negative small icon button">
+                                            <i class="trash icon"></i>
                                         </button>
                                     </td>
                                 </tr>
@@ -79,7 +95,7 @@ table
                         </table>
 
                         <!-- 分頁按鈕 -->
-                        <div class="ts small buttons">
+                        <div class="ts small buttons" v-if="members && members.length !== 0">
                             <button class="ts disabled icon button">
                                 <i class="left arrow icon"></i>
                             </button>
@@ -110,14 +126,39 @@ export default {
     components: {
         MainSidebar
     },
-    methods: {
-        ...mapActions('main', ['fetchMembers'])
+    data() {
+        return {
+            members: null
+        }
     },
-    computed: {
-        ...mapGetters('main', ['members'])
+    methods: {
+        edit() {
+
+        },
+        remove(realname) {
+            var oldMembers = this.members
+            this.members = null
+
+            setTimeout(() => {
+                this.members = oldMembers
+                this.members.forEach((obj, i) => {
+                    if(obj.realname === realname)
+                        this.members.splice(i, 1)
+                })
+
+                localStorage.setItem('members', JSON.stringify(this.members))
+
+            }, Math.floor(Math.random() * 1200) + 500)
+        }
     },
     mounted() {
-        this.fetchMembers({$http: this.$http})
+        setTimeout(() => {
+            this.members = JSON.parse(localStorage.getItem('members'))
+
+            if(this.members === null)
+                this.members = []
+
+        }, Math.floor(Math.random() * 1200) + 500)
     }
 }
 </script>

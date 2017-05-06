@@ -1,6 +1,9 @@
 <style lang="sass" scoped>
 .sidebar
     height: 100vh !important
+
+    .item.active
+        color: #FFF !important
 </style>
 
 <template>
@@ -51,7 +54,7 @@
         <!-- 底部選單 -->
         <div class="bottom menu">
             <!-- 登出 -->
-            <a href="#!" class="item">
+            <a href="#!" class="item" @click="reset()">
                 <i class="sign out icon"></i>
                 登出
             </a>
@@ -64,6 +67,14 @@
 
 <script>
 export default {
-    name: 'Sidebar'
+    name: 'Sidebar',
+    methods: {
+        reset() {
+            localStorage.removeItem('users')
+            localStorage.removeItem('members')
+            localStorage.removeItem('requests')
+            this.$router.push({path: '/login'})
+        }
+    }
 }
 </script>

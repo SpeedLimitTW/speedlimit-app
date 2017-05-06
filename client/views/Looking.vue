@@ -30,8 +30,84 @@
                 <div class="ts relaxed grid">
                     <!-- 標題欄位 -->
                     <div class="sixteen wide column">
-                        <div class="ts three waterfall cards">
-                            <div class="ts card" v-for="user in lookings">
+                        <template v-if="loading">
+                            <div class="ts three cards">
+                                <div class="ts card" style="opacity: 0.6">
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+
+                                    <!-- 讀取指示器 -->
+                                    <div class="ts active inverted dimmer">
+                                        <div class="ts loader"></div>
+                                    </div>
+                                    <!-- / 讀取指示器 -->
+                                </div>
+                                <div class="ts card" style="opacity: 0.5">
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+
+                                    <!-- 讀取指示器 -->
+                                    <div class="ts active inverted dimmer">
+                                        <div class="ts loader"></div>
+                                    </div>
+                                    <!-- / 讀取指示器 -->
+                                </div>
+                                <div class="ts card" style="opacity: 0.4">
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+
+                                    <!-- 讀取指示器 -->
+                                    <div class="ts active inverted dimmer">
+                                        <div class="ts loader"></div>
+                                    </div>
+                                    <!-- / 讀取指示器 -->
+                                </div>
+                                <div class="ts card" style="opacity: 0.3">
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+
+                                    <!-- 讀取指示器 -->
+                                    <div class="ts active inverted dimmer">
+                                        <div class="ts loader"></div>
+                                    </div>
+                                    <!-- / 讀取指示器 -->
+                                </div>
+                                <div class="ts card" style="opacity: 0.2">
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+
+                                    <!-- 讀取指示器 -->
+                                    <div class="ts active inverted dimmer">
+                                        <div class="ts loader"></div>
+                                    </div>
+                                    <!-- / 讀取指示器 -->
+                                </div>
+                                <div class="ts card" style="opacity: 0.1">
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+
+                                    <!-- 讀取指示器 -->
+                                    <div class="ts active inverted dimmer">
+                                        <div class="ts loader"></div>
+                                    </div>
+                                    <!-- / 讀取指示器 -->
+                                </div>
+                            </div>
+                        </template>
+                        <div class="ts three cards" v-if="!loading">
+                            <div class="ts card" v-for="user in requests" v-if="!user.done">
                                 <div class="map" style="width: 100%; height: 200px"></div>
                                 <div class="content">
                                     <div class="header">
@@ -43,7 +119,7 @@
                                     </div>
                                 </div>
                                 <div class="ts bottom attached fluid buttons">
-                                    <button class="ts button">前往幫助</button>
+                                    <router-link :to="'/trace/'+user.realname" class="ts button">前往幫助</router-link>
                                 </div>
                             </div>
                         </div>
@@ -66,29 +142,41 @@ export default {
         MainSidebar
     },
     methods: {
-        ...mapActions('main', ['fetchLookings'])
+
     },
-    computed: {
-        ...mapGetters('main', ['lookings'])
+    data() {
+        return {
+            requests: null,
+            loading : true
+        }
     },
     mounted() {
-        this.fetchLookings({$http: this.$http})
+        var that = this
 
-        var pos        = { lat: 22.7478292, lng: 120.3436056 },
-            mapOptions = {
-            center: pos,
-            zoom  : 16
-        }
-        document.querySelectorAll('.map').forEach((el) => {
-            var map    = new google.maps.Map(el, mapOptions),
-                marker = new google.maps.Marker({
-                position: pos,
-                map     : map,
-                title   : 'Hello World!'
-            })
-        })
+        setTimeout(() => {
+            var requests = JSON.parse(localStorage.getItem('requests'))
 
+            if (requests === null)
+                requests = []
 
+            that.requests = requests
+            that.loading  = false
+
+            setTimeout(() => {
+                var pos        = { lat: 22.7478292, lng: 120.3436056 },
+                    mapOptions = {
+                    center: pos,
+                    zoom  : 16
+                }
+                document.querySelectorAll('.map').forEach((el) => {
+                    var map    = new google.maps.Map(el, mapOptions),
+                        marker = new google.maps.Marker({
+                        position: pos,
+                        map     : map
+                    })
+                })
+            }, 100)
+        }, Math.floor(Math.random() * 1200) + 500)
     }
 }
 </script>
