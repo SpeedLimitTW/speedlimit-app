@@ -1,6 +1,6 @@
 const path = {
     // Counter
-    count: "%s/count"
+    members: "%s/members"
 }
 
 export { path }

@@ -1,15 +1,15 @@
 import {uri, base, mock} from 'apis'
 import {path}            from 'apis/path'
 // Modules
-import {_count}          from 'apis/mocks/Counter'
+import {_member}          from 'apis/mocks/Member'
 
 /**
  * Counter
  */
 
-// getCount
-mock.get(uri(path.count, base), function(req){
+// getMembers
+mock.get(uri(path.members, base), function(req){
     return {
-        body: _count.getCount
+        body: _member.getMembers
     }
 })
