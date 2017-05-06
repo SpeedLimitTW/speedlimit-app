@@ -2,8 +2,7 @@ import Vue                                  from 'vue'
 import Vuex                                 from 'vuex'
 import {state, mutations, actions, getters} from './shared'
 
-/** Imported Modules */
-import member from 'modules/Member'
+import main from 'modules/Main'
 
 Vue.use(Vuex)
 
@@ -12,7 +11,7 @@ const store = new Vuex.Store
     /** Modules */
     modules:
     {
-        member
+        main
     },
 
     /** Shared Store */

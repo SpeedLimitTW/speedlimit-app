@@ -1,6 +1,7 @@
 const path = {
-    // Counter
-    members: "%s/members"
+    members : "%s/members",
+    requests: "%s/requests",
+    lookings: "%s/lookings"
 }
 
 export { path }

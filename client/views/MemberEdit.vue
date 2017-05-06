@@ -18,7 +18,7 @@ table
 
             <!-- 聚焦看板 -->
             <div class="ts large horizontally fitted fluid slate">
-                <div class="ts very narrow container">
+                <div class="ts narrow container">
                     <!-- 標題 -->
                     <div class="header">
                         編輯成員
@@ -30,7 +30,7 @@ table
             <!-- / 聚焦看板 -->
 
             <!-- 主要容器 -->
-            <div class="ts very narrow container">
+            <div class="ts narrow container">
                 <div class="ts relaxed grid">
                     <!-- 標題欄位 -->
                     <div class="sixteen wide column">
@@ -75,13 +75,13 @@ table
                                     <!-- 下拉式選單群組 -->
                                     <div class="ts relaxed fluid separated dropdowns">
                                         <select>
-                                            <option>1998</option>
+                                            <option v-for="year in date.years">{{ year }}</option>
                                         </select>
                                         <select>
-                                            <option>07</option>
+                                            <option v-for="month in date.months">{{ month }}</option>
                                         </select>
                                         <select>
-                                            <option>13</option>
+                                            <option v-for="day in date.days">{{ day }}</option>
                                         </select>
                                     </div>
                                     <!-- / 下拉式選單群組 -->
@@ -143,7 +143,6 @@ table
                                 <button class="ts fluid button" type="button">取消</button>
                                 <button class="ts fluid inverted button" type="button">儲存變更</button>
                             </div>
-
                             <!-- / 按鈕 -->
                         </form>
                         <!-- / 表單 -->
@@ -180,6 +179,7 @@ table
 
 <script>
 import MainSidebar from 'components/Sidebar'
+import { generate } from 'scripts/january'
 //import 'scripts/tocas.dev.js'
 
 export default {
@@ -216,7 +216,8 @@ export default {
         return {
             devices: [],
             scanner: false,
-            qr: new QCodeDecoder()
+            qr: new QCodeDecoder(),
+            date: generate()
         }
     },
     mounted(){

@@ -18,7 +18,7 @@ table
 
             <!-- 聚焦看板 -->
             <div class="ts large horizontally fitted fluid slate">
-                <div class="ts very narrow container">
+                <div class="ts narrow container">
                     <!-- 標題 -->
                     <div class="header">
                         變更密碼
@@ -30,7 +30,7 @@ table
             <!-- / 聚焦看板 -->
 
             <!-- 主要容器 -->
-            <div class="ts very narrow container">
+            <div class="ts narrow container">
                 <div class="ts relaxed grid">
                     <!-- 標題欄位 -->
                     <div class="sixteen wide column">

@@ -91,11 +91,7 @@
                         <!-- 區隔線 -->
                         <div class="ts section divider"></div>
                         <!-- / 區隔線 -->
-                    </div>
-                    <!-- / 大略卡片欄位 -->
 
-                    <!-- 左側雜項欄位 -->
-                    <div class="ten wide column">
                         <div class="ts top attached info segment">
                             <div class="ts large header">目前位置</div>
                         </div>
@@ -103,67 +99,8 @@
                             <div id="map-canvas" style="width: 100%; height: 300px"></div>
                         </div>
 
-                    </div>
-                    <!-- / 左側雜項欄位 -->
-
-                    <!-- 右側雜項欄位 -->
-                    <div class="six wide column">
-                        <!-- 系統佇列 -->
-                        <div class="ts top attached info segment">
-                            <div class="ts large header">已連結裝置</div>
-                        </div>
-                        <div class="ts bottom attached center aligned segment">
-                            <div class="ts bulleted list">
-                                <div class="item">橙希</div>
-                                <div class="item">卡莉絲</div>
-                                <div class="item">依可諾爾</div>
-                            </div>
-                        </div>
-                        <!-- / 系統佇列 -->
-
-                        <!-- 系統佇列 -->
-                        <div class="ts top attached info segment">
-                            <div class="ts large header">動態時軸</div>
-                        </div>
-                        <div class="ts bottom attached center aligned segment">
-                            <div class="ts feed">
-                                <div class="event">
-                                    <div class="label">
-                                        <img src="https://tocas-ui.com/assets/img/0c20de3.png">
-                                    </div>
-                                    <div class="content">
-                                        <div class="date">
-                                            3 小時前
-                                        </div>
-                                        <div class="summary">
-                                            <a>Yami Odymel</a> 經過了「中正紀念堂」。
-                                        </div>
-                                        <div class="extra images">
-                                            <a><img src="https://tocas-ui.com/assets/img/15d7510.png"></a>
-                                            <a><img src="https://tocas-ui.com/assets/img/15d7510.png"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="event">
-                                    <div class="label">
-                                        <img src="https://tocas-ui.com/assets/img/5e5e3a6.png">
-                                    </div>
-                                    <div class="content">
-                                        <div class="date">
-                                            1 天前
-                                        </div>
-                                        <div class="summary">
-                                            <a>Yami Odymel</a> 在「全家便利商店」停留了 30 分鐘。
-                                        </div>
-                                        <div class="extra images">
-                                            <a><img src="https://tocas-ui.com/assets/img/15d7510.png"></a>
-                                            <a><img src="https://tocas-ui.com/assets/img/15d7510.png"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- / 系統佇列 -->
+                        <br>
+                        <table data-v-796f1e9a="" class="ts padded stripped selectable table"><thead data-v-796f1e9a=""><tr data-v-796f1e9a=""><th data-v-796f1e9a="">距離</th> <th data-v-796f1e9a="">費時</th> <th data-v-796f1e9a="">前往方向</th></tr></thead> <tbody data-v-796f1e9a=""><tr data-v-796f1e9a=""><td data-v-796f1e9a="">80 公尺</td> <td data-v-796f1e9a="">1 分</td> <td data-v-796f1e9a="">往<b>東北</b>朝<b>萬金路</b>前進</td></tr><tr data-v-796f1e9a=""><td data-v-796f1e9a="">0.2 公里</td> <td data-v-796f1e9a="">1 分</td> <td data-v-796f1e9a="">於<b>萬金路</b>向<b>右</b>轉</td></tr><tr data-v-796f1e9a=""><td data-v-796f1e9a="">1.4 公里</td> <td data-v-796f1e9a="">3 分</td> <td data-v-796f1e9a="">於<b>旗楠公路</b>/<b>旗楠路</b>/<b>台22線</b>向<b>右</b>轉</td></tr><tr data-v-796f1e9a=""><td data-v-796f1e9a="">12.2 公里</td> <td data-v-796f1e9a="">8 分</td> <td data-v-796f1e9a="">向<b>右</b>轉，走<b>國道1號</b><div style="font-size:0.9em">部分收費路段</div></td></tr><tr data-v-796f1e9a=""><td data-v-796f1e9a="">1.6 公里</td> <td data-v-796f1e9a="">1 分</td> <td data-v-796f1e9a="">在<b>342-高科</b>出口下交流道，朝<b>高雄科學園區</b>前進<div style="font-size:0.9em">部分收費路段</div></td></tr><tr data-v-796f1e9a=""><td data-v-796f1e9a="">3.6 公里</td> <td data-v-796f1e9a="">3 分</td> <td data-v-796f1e9a="">接著走<b>南科高雄園區中山高聯絡道</b></td></tr><tr data-v-796f1e9a=""><td data-v-796f1e9a="">1.1 公里</td> <td data-v-796f1e9a="">2 分</td> <td data-v-796f1e9a="">接著走<b>路科二路</b></td></tr><tr data-v-796f1e9a=""><td data-v-796f1e9a="">0.2 公里</td> <td data-v-796f1e9a="">1 分</td> <td data-v-796f1e9a="">於<b>路科九路</b>向<b>左</b>轉</td></tr><tr data-v-796f1e9a=""><td data-v-796f1e9a="">1.4 公里</td> <td data-v-796f1e9a="">2 分</td> <td data-v-796f1e9a="">於<b>保興二路</b>向<b>右</b>轉</td></tr><tr data-v-796f1e9a=""><td data-v-796f1e9a="">2.5 公里</td> <td data-v-796f1e9a="">4 分</td> <td data-v-796f1e9a="">於<b>保安路</b>/<b>西部濱海公路</b>/<b>台17線</b>向<b>左</b>轉</td></tr><tr data-v-796f1e9a=""><td data-v-796f1e9a="">1.2 公里</td> <td data-v-796f1e9a="">2 分</td> <td data-v-796f1e9a="">於<b>復興路</b>/<b>高22鄉道</b>向<b>右</b>轉<div style="font-size:0.9em">繼續開在復興路上</div></td></tr><tr data-v-796f1e9a=""><td data-v-796f1e9a="">0.1 公里</td> <td data-v-796f1e9a="">1 分</td> <td data-v-796f1e9a="">接著走<b>舊港路</b>/<b>高21鄉道</b></td></tr><tr data-v-796f1e9a=""><td data-v-796f1e9a="">1.5 公里</td> <td data-v-796f1e9a="">3 分</td> <td data-v-796f1e9a="">於<b>文安北路</b>口向<b>右</b>轉</td></tr><tr data-v-796f1e9a=""><td data-v-796f1e9a="">78 公尺</td> <td data-v-796f1e9a="">1 分</td> <td data-v-796f1e9a="">靠<b>右</b>行駛<div style="font-size:0.9em">目的地在右邊</div></td></tr></tbody></table>
 
                     </div>
                     <!-- / 右側雜項欄位 -->

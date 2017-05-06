@@ -21,7 +21,7 @@ table
 
             <!-- 聚焦看板 -->
             <div class="ts large horizontally fitted fluid slate">
-                <div class="ts very narrow container">
+                <div class="ts narrow container">
                     <!-- 標題 -->
                     <div class="header">
                         成員清單
@@ -33,7 +33,7 @@ table
             <!-- / 聚焦看板 -->
 
             <!-- 主要容器 -->
-            <div class="ts very narrow container">
+            <div class="ts narrow container">
                 <div class="ts relaxed grid">
                     <!-- 標題欄位 -->
                     <div class="sixteen wide column">
@@ -49,7 +49,7 @@ table
                             </div>
                             <!-- / 讀取指示器 -->
                         </div>
-                        <table class="ts stripped selectable table" v-if="members">
+                        <table class="ts padded stripped table" v-if="members">
                             <thead>
                                 <tr>
                                     <th>姓名</th>
@@ -60,7 +60,7 @@ table
                             </thead>
                             <tbody>
                                 <tr v-for="member in members" :key="member.realname">
-                                    <td><a href="#!">{{ member.realname }}</a></td>
+                                    <td><router-link to="/dashboard">{{ member.realname }}</router-link></td>
                                     <td>{{ member.birthday }}</td>
                                     <td>
                                         <div class="ts list" v-if="member.devices">
@@ -111,10 +111,10 @@ export default {
         MainSidebar
     },
     methods: {
-        ...mapActions('member', ['fetchMembers'])
+        ...mapActions('main', ['fetchMembers'])
     },
     computed: {
-        ...mapGetters('member', ['members'])
+        ...mapGetters('main', ['members'])
     },
     mounted() {
         this.fetchMembers({$http: this.$http})
