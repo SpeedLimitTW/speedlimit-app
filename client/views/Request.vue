@@ -37,8 +37,8 @@ table
                             <div class="field">
                                 <label>需協助者</label>
                                 <div class="ts fluid dropdown">
-                                    <select v-for="member in members" v-model="realname">
-                                        <option :value="member.realname">{{ member.realname }}</option>
+                                    <select v-model="realname">
+                                        <option :value="member.realname" v-for="member in members">{{ member.realname }}</option>
                                     </select>
                                 </div>
                             </div>
